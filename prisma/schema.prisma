@@ -6,6 +6,30 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
+}
+
+model User {
+  // in mongodb document we have ids like _id, since prisma doesnt support this we need to push it to the database but keep it as id here 
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String?
+  email          String?   @unique
+  emailVerified  DateTime?
+  image          String?
+  hashedPassword String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  blogs Blog[]
+}
+
+model Blog {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  createdAt   DateTime @default(now())
+  imageSrc    String
+  description String
+  user        User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String?  @db.ObjectId
 }
