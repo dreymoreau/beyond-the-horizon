@@ -19,13 +19,8 @@ const initialState: InitialStateProps = {
 };
 
 export default function Page() {
-  const [state, setState] = useState(initialState);
   const router = useRouter();
-
-  function handleChange(e: any) {
-    // spreading out state, target to name in input field and then the value entered
-    setState({ ...state, [e.target.name]: e.target.value });
-  }
+  const [state, setState] = useState(initialState);
 
   //event:FormEvent helps handle the forms
   const onSubmit = (event: FormEvent) => {
@@ -44,6 +39,12 @@ export default function Page() {
       })
       .catch((err: any) => {});
   };
+
+  function handleChange(e: any) {
+    // spreading out state, target to name in input field and then the value entered
+    setState({ ...state, [e.target.name]: e.target.value });
+  }
+
   return (
     <form className="text-center" onSubmit={onSubmit}>
       <div className="flex flex-col justify-center h-[450px] w-[350px] mx-auto gap-2">

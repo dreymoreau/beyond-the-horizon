@@ -1,8 +1,10 @@
 "use client";
 
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import { SafeUser } from "@/types";
-import Link from "next/link";
 import { signOut } from "next-auth/react";
+import Link from "next/link";
+import React from "react";
 
 interface UserMenuProps {
   currentUser: SafeUser | null;
