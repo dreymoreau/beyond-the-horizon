@@ -1,6 +1,6 @@
 "use client";
 
-import getCurrentUser from "@/app/actions/getCurrentUser";
+// import getCurrentUser from "@/app/actions/getCurrentUser";
 import { SafeUser } from "@/types";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
