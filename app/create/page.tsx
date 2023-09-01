@@ -1,7 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
+import { toast } from "react-hot-toast";
+import Input from "@/components/input/Input";
+import ImageUpload from "@/components/input/ImageUpload";
 
 interface InitialStateProps {
   name?: string;
@@ -17,12 +21,48 @@ const initialState: InitialStateProps = {
 
 export default function Page() {
   const [state, setState] = useState(initialState);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
+  const onSubmit = (event: FormEvent) => {
+    setIsLoading(true);
+
+    event.preventDefault();
+
+    axios
+      .post("/api/blogs", state)
+      .then(() => {
+        toast.success("Created successfully");
+        router.refresh();
+        router.push("/");
+        // router.push('/')
+      })
+
+      .catch(() => {
+        toast.error("Went wrong");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setState({ ...state, [event.target.name]: event.target.value });
+  }
+
+  const setCustomValue = (id: any, value: any) => {
+    setState((prevValues) => ({
+      ...prevValues,
+      [id]: value,
+    }));
+  };
   return (
-    <form>
+    <form onSubmit={onSubmit} className="w-[600px] h-[700px] mx-auto py-12">
       <div>
-        <ImageUpload />
+        <ImageUpload
+          value={state.imageSrc}
+          onChange={(value) => setCustomValue("imageSrc", value)}
+        />
       </div>
 
       <div className="flex flex-col justify-center h-[450px] w-[350px] mx-auto gap-2">
