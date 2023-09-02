@@ -2,14 +2,14 @@
 
 import React, { ChangeEvent, FormEvent, useMemo, useState } from "react";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+// import { toast } from "react-hot-toast";
 import Input from "@/components/input/Input";
 import ImageUpload from "@/components/input/ImageUpload";
 
 interface InitialStateProps {
   name?: string;
-  imageSrc?: string;
+  imageSrc: string;
   description: string;
 }
 
@@ -32,18 +32,14 @@ export default function Page() {
     axios
       .post("/api/blogs", state)
       .then(() => {
-        toast.success("Created successfully");
-        router.refresh();
         router.push("/");
         // router.push('/')
       })
 
-      .catch(() => {
-        toast.error("Went wrong");
-      })
-      .finally(() => {
-        setIsLoading(false);
+      .catch((err) => {
+        throw new Error(err);
       });
+    router.refresh();
   };
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
