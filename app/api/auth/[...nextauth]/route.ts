@@ -15,6 +15,8 @@ export const authOptions:AuthOptions = {
             password: {label: 'password', type: 'password'}
             },
 
+            // getting data from the database, checking first if there is no user than throw error
+            // if use exists, use findUnique method from prisma
             async authorize(credentials) {
                 if(!credentials?.email || !credentials?.password){
                     throw new Error('Invalid Credentials');
@@ -24,11 +26,11 @@ export const authOptions:AuthOptions = {
                         email:credentials.email
                     }
                 })
-
+                // checking if user or password doesnt exist, throw error
                 if(!user || !user?.hashedPassword){
                     throw new Error('Invalid Credentials');
                 }
-
+                // compare the credentials password and the hashed password to ensure they match
                 const isCorrect = await bcrypt.compare(
                     credentials.password,
                     user.hashedPassword
