@@ -6,7 +6,7 @@ import Image from "next/image";
 interface BlogProps {
   key: string;
   data: SafeBlogs;
-  currentUser?: SafeUser | null;
+  currentUser: SafeUser | null;
 }
 export default function SingleBlog({ data, key, currentUser }: BlogProps) {
   return (
