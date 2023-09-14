@@ -19,6 +19,10 @@ export default function SingleBlog({ data, key, currentUser }: BlogProps) {
             height={300}
             alt="Blog Image"
           />
+
+          <div className="w-[530px] flex flex-col gap-4 leading-[1.5]">
+            <h1>{data.name}</h1>
+          </div>
         </div>
       </div>
     </div>
