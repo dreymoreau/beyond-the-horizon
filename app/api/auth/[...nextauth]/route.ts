@@ -35,7 +35,7 @@ export const authOptions:AuthOptions = {
                     credentials.password,
                     user.hashedPassword
                 )
-
+                // checking if the hashed password doesnt match, throw an Error saying Invalid credentials
                 if(!isCorrect){
                     throw new Error('Invalid credentials')
                 }
