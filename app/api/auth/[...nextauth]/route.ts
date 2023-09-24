@@ -6,7 +6,7 @@ import prisma from "../../../lib/prismadb"
 
 export const authOptions:AuthOptions = {
     adapter: PrismaAdapter(prisma),
-
+    // gives the user the choices for input, there are many different providers, but here it is only signup with email and password
     providers: [
         CredentialsProvider({
             
