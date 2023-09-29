@@ -9,6 +9,7 @@ export default async function getBlogs(){
             }
         })
 
+        // map through all the blogs to get them, reassign the createdAt property to the time that it was created
         const safeBlogs = blogs.map((blog) => ({
             ...blogs,
             createdAt: blog.createdAt.toISOString()
