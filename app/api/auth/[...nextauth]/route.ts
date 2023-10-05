@@ -43,6 +43,7 @@ export const authOptions:AuthOptions = {
             }
         })
     ],
+    // this sets up any routes that will be created separately from the built in stuff
     pages: {
         signIn: '/'
     },
