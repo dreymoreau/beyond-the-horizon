@@ -24,6 +24,7 @@ model User {
   blogs Blog[]
 }
 
+// setting the model structure for each blog
 model Blog {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
   name        String
