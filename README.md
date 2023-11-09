@@ -1,3 +1,8 @@
+# Beyond the Horizon (( In Development ))
+
+This project is a Full Stack App using TypeScript, Next.Js as well as Prisma, using MongoDB for the backend. Adjusting the backend from SQL Lite to MongoDB gave the project an added level of security through Mongo's built in features. The user can create their own account, have it show up on the dashboard when they are logged in, post blog posts, comment on other users posts, edit their own posts as well as added features being incorporated in! Welcome :)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
