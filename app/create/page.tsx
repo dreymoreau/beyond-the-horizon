@@ -62,6 +62,7 @@ export default function Page() {
       </div>
 
       <div className="flex flex-col justify-center h-[450px] w-[350px] mx-auto gap-2">
+      
         <Input
           placeholder="Blog header"
           id="name"
